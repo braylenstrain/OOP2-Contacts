@@ -6,11 +6,15 @@ package application;
  * This program allows you to store the contact information of any number of people.
  */
 
+import java.util.ArrayList;
 import javafx.stage.Stage;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.text.Text;
 
 public class ContactsOOP2 extends Application{
+	
+	ArrayList<Contact> contacts = new ArrayList<>();
 
 	public static void main(String[] args) {
 		launch(args);
@@ -30,12 +34,22 @@ public class ContactsOOP2 extends Application{
 		primaryStage.show();
 		primaryStage.setResizable(false);
 		
-		//Set actions for homepage
+		//Set actions when btDisplay is clicked
 		homepage.btDisplay.setOnAction(e -> {
-			Scene scene2 = new Scene(displayContacts, 800, 550);
+			Scene scene2 = new Scene(displayContacts, 850, 600);
 			primaryStage.setTitle("Contacts: Display Contacts");
 			primaryStage.setScene(scene2);
 			primaryStage.show();
+			
+			//Display all contacts from ArrayList contacts when DisplayContacts is loaded
+			for (int i = 0, j = 1; i < contacts.size(); i++, j += 2) {
+				displayContacts.gridPane.add(new Text(contacts.get(i).getFirstName()), 0, j);
+				displayContacts.gridPane.add(new Text(contacts.get(i).getLastName()), 1, j);
+				displayContacts.gridPane.add(new Text(contacts.get(i).getPersonalPhoneNumber()), 2, j);
+				displayContacts.gridPane.add(new Text(contacts.get(i).getWorkPhoneNumber()), 3, j);
+				displayContacts.gridPane.add(new Text(contacts.get(i).getPersonalEmailAddress()), 4, j);
+				displayContacts.gridPane.add(new Text(contacts.get(i).getWorkEmailAddress()), 5, j);
+			}
 		});
 	}
 
