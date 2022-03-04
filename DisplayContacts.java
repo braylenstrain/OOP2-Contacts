@@ -2,19 +2,29 @@ package application;
 
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 public class DisplayContacts extends ScrollPane {
-	GridPane pane = new GridPane();
-	Text firstName = new Text("First Name");
-	Text lastName = new Text("Last Name");
-	Text personalPhone = new Text("Personal Phone Number");
-	Text workPhone = new Text("Work Phone Number");
-	Text personalEmail= new Text("Personal Email Address");
-	Text workEmail = new Text("Work Email Address");
+	GridPane gridPane = new GridPane();
+	Text[] textArray = {
+		new Text("First Name"),
+		new Text("Last Name"),
+		new Text("Personal Phone Number"),
+		new Text("Work Phone Number"),
+		new Text("Personal Email Address"),
+		new Text("Work Email Address")
+		};
+	
 	
 	public DisplayContacts() {
-		pane.addRow(0, firstName, lastName, personalPhone, workPhone, personalEmail, workEmail);
-		setContent(pane);
+		gridPane.setHgap(20);
+		Font font = Font.font("Times New Roman", FontWeight.BOLD, 15);
+		for (int i = 0; i < textArray.length; i++) {
+			textArray[i].setFont(font);
+			gridPane.add(textArray[i], i, 0);
+		}
+		setContent(gridPane);
 	}
 }
