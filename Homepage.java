@@ -15,7 +15,7 @@ public class Homepage extends BorderPane {
 	Button btModify = new Button("Modify Contacts");
 	Button btSearch = new Button("Search Contacts");
 	Button btExit = new Button("Exit Program");
-	Button btFile = new Button("Change Source File");
+	Button btFile = new Button("Load Contacts");
 	
 	public Homepage() {
 		//Create Layout for VBox options
