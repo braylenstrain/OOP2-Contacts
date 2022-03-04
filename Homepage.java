@@ -1,3 +1,5 @@
+package application;
+
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Button;
