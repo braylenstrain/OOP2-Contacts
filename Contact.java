@@ -20,7 +20,6 @@ public class Contact implements Comparable<Contact>{
 		this.firstName = firstName;
 	}
 	
-	
 	public String getLastName() {
 		return lastName;
 	}
