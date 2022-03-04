@@ -17,10 +17,11 @@ public class ContactsOOP2 extends Application{
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Scene scene = new Scene(new Homepage(), 500, 500);
+		Scene scene = new Scene(new Homepage(), 600, 350);
 		primaryStage.setTitle("Contacts: Homepage");
 		primaryStage.setScene(scene);
 		primaryStage.show();
+		primaryStage.setResizable(false);
 	}
 
 }
