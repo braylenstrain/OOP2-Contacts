@@ -48,11 +48,12 @@ public class AddContacts extends BorderPane {
 		setPadding(new Insets(20));
 	}
 	
+	//
 	public void addSuccessful() {
 		counter++;
 		Text contactsAdded = new Text(counter + " Contact(s) Added");
 		setTop(contactsAdded);
-		setAlignment(contactsAdded, Pos.CENTER_RIGHT);
+		setAlignment(contactsAdded, Pos.TOP_RIGHT);
 	}
 	
 	public void addContact() {
