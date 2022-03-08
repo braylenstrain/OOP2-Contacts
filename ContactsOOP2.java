@@ -25,38 +25,38 @@ public class ContactsOOP2 extends Application{
 		
 		//Load all the different pages
 		Homepage homepage = new Homepage();
+		Scene homepageScene = new Scene(homepage, 600, 350);
+		
 		DisplayContacts displayContacts = new DisplayContacts();
+		Scene displayScene = new Scene(displayContacts, 850, 600);
+		
 		AddContacts addContacts = new AddContacts();
+		Scene addScene = new Scene(addContacts, 350, 350);
 		
 		//Set the scene to homepage when program starts
-		Scene scene = new Scene(homepage, 600, 350);
 		primaryStage.setTitle("Contacts: Homepage");
-		primaryStage.setScene(scene);
+		primaryStage.setScene(homepageScene);
 		primaryStage.show();
 		primaryStage.setResizable(false);
 		
 		//Go to DisplayContacts scene when btDisplay is clicked
 		homepage.btDisplay.setOnAction(e -> {
-			Scene scene2 = new Scene(displayContacts, 850, 600);
 			primaryStage.setTitle("Contacts: Display Contacts");
-			primaryStage.setScene(scene2);
+			primaryStage.setScene(displayScene);
 			
-			//Display all contacts from ArrayList contacts when DisplayContacts is loaded
-			for (int i = 0, j = 1; i < contacts.size(); i++, j += 2) {
-				displayContacts.gridPane.add(new Text(contacts.get(i).getFirstName()), 0, j);
-				displayContacts.gridPane.add(new Text(contacts.get(i).getLastName()), 1, j);
-				displayContacts.gridPane.add(new Text(contacts.get(i).getPersonalPhoneNumber()), 2, j);
-				displayContacts.gridPane.add(new Text(contacts.get(i).getWorkPhoneNumber()), 3, j);
-				displayContacts.gridPane.add(new Text(contacts.get(i).getPersonalEmailAddress()), 4, j);
-				displayContacts.gridPane.add(new Text(contacts.get(i).getWorkEmailAddress()), 5, j);
-			}
+			//Display all contacts from ArrayList contacts and exit Button
+			displayContacts.display(contacts, displayContacts.gridPane);
+			
+			displayContacts.btExit.setOnAction(f -> {
+				primaryStage.setTitle("Contacts: Homepage");
+				primaryStage.setScene(homepageScene);
+			});
 		});
 		
 		//Go to AddContacts scene when btAddContacts is clicked
 		homepage.btAdd.setOnAction(e -> {
-			Scene scene3 = new Scene(addContacts, 350, 350);
 			primaryStage.setTitle("Contacts: Add Contacts");
-			primaryStage.setScene(scene3);
+			primaryStage.setScene(addScene);
 			
 			//When btAdd is clicked, take text from all text fields and add a Contact to contacts
 			addContacts.btAdd.setOnAction(f -> addContacts.addContact());
@@ -67,10 +67,13 @@ public class ContactsOOP2 extends Application{
 						addContacts.addContact();
 			});
 			
+			//Clear counter and sort contacts on exit, then return to homepage
 			addContacts.btExit.setOnAction(f -> {
+				addContacts.counter = 0;
+				addContacts.setTop(new Text(""));
 				sortContacts();
 				primaryStage.setTitle("Contacts: Homepage");
-				primaryStage.setScene(scene);
+				primaryStage.setScene(homepageScene);
 			});
 		});
 	}
@@ -89,7 +92,6 @@ public class ContactsOOP2 extends Application{
 			if (!temp.equals(contacts.get(i))) {
 				contacts.set(tempIndex, contacts.get(i));
 				contacts.set(i, temp);
-				System.out.println(contacts);
 			}
 		}
 	}
