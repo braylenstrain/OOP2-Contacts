@@ -1,4 +1,3 @@
-package application;
 
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
@@ -7,6 +6,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 public class DisplayContacts extends ScrollPane {
+	
 	GridPane gridPane = new GridPane();
 	Text[] textArray = {
 		new Text("First Name"),
@@ -27,4 +27,5 @@ public class DisplayContacts extends ScrollPane {
 		}
 		setContent(gridPane);
 	}
+	
 }
