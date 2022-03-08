@@ -1,4 +1,3 @@
-package application;
 
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -11,7 +10,8 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 
-public class AddContacts extends BorderPane{
+public class AddContacts extends BorderPane {
+	
 	TextField tfFirstName = new TextField();
 	TextField tfLastName = new TextField();
 	TextField tfPersonalPhone = new TextField();
@@ -27,7 +27,7 @@ public class AddContacts extends BorderPane{
 		new Label("Work Email Address: ", tfWorkEmail)
 	};
 	VBox textFields = new VBox(20);
-	HBox buttons = new HBox(110);
+	HBox buttons = new HBox(100);
 	Button btExit = new Button("Back to Homepage");
 	Button btAdd = new Button("Add Contact");
 	int counter;
@@ -55,5 +55,25 @@ public class AddContacts extends BorderPane{
 		setAlignment(contactsAdded, Pos.CENTER_RIGHT);
 	}
 	
-	
+	public void addContact() {
+		Contact contact = new Contact();
+		contact.setFirstName(tfFirstName.getText().trim());
+		contact.setLastName(tfLastName.getText().trim());
+		contact.setPersonalPhoneNumber(tfPersonalPhone.getText().trim());
+		contact.setWorkPhoneNumber(tfWorkPhone.getText().trim());
+		contact.setPersonalEmailAddress(tfPersonalEmail.getText().trim());
+		contact.setWorkEmailAddress(tfWorkEmail.getText().trim());
+		ContactsOOP2.contacts.add(contact);
+		
+		//Display how many contacts have been added at the top of the scene
+		addSuccessful();
+		
+		//Clear the text fields
+		tfFirstName.clear();
+		tfLastName.clear();
+		tfPersonalPhone.clear();
+		tfWorkPhone.clear();
+		tfPersonalEmail.clear();
+		tfWorkEmail.clear();
+	}
 }
