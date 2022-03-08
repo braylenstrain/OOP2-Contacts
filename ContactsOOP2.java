@@ -33,6 +33,9 @@ public class ContactsOOP2 extends Application{
 		AddContacts addContacts = new AddContacts();
 		Scene addScene = new Scene(addContacts, 350, 350);
 		
+		SearchContacts searchContacts = new SearchContacts();
+		Scene searchScene = new Scene(searchContacts, 850, 300);
+		
 		//Set the scene to homepage when program starts
 		primaryStage.setTitle("Contacts: Homepage");
 		primaryStage.setScene(homepageScene);
@@ -53,7 +56,7 @@ public class ContactsOOP2 extends Application{
 			});
 		});
 		
-		//Go to AddContacts scene when btAddContacts is clicked
+		//Go to AddContacts scene when btAdd is clicked
 		homepage.btAdd.setOnAction(e -> {
 			primaryStage.setTitle("Contacts: Add Contacts");
 			primaryStage.setScene(addScene);
@@ -75,6 +78,12 @@ public class ContactsOOP2 extends Application{
 				primaryStage.setTitle("Contacts: Homepage");
 				primaryStage.setScene(homepageScene);
 			});
+		});
+		
+		//Go to SearchContacts scene when btSearch is clicked
+		homepage.btSearch.setOnAction(e -> {
+			primaryStage.setTitle("Contacts: Search Contacts");
+			primaryStage.setScene(searchScene);
 		});
 	}
 	
