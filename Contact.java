@@ -1,4 +1,3 @@
-package application;
 /*
  * Author: Braylen Strain
  * Date:
@@ -67,9 +66,9 @@ public class Contact implements Comparable<Contact>{
 	@Override
 	public int compareTo(Contact o) {
 		if (firstName.compareToIgnoreCase(o.getFirstName()) > 0) {
-			return 1;
-		} else if (firstName.compareToIgnoreCase(o.getFirstName()) > 0) {
 			return -1;
+		} else if (firstName.compareToIgnoreCase(o.getFirstName()) < 0) {
+			return 1;
 		} else {
 			return 0;
 		}
