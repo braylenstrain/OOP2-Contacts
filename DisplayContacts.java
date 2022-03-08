@@ -1,12 +1,15 @@
 
+import java.util.ArrayList;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.scene.control.Button;
 
 public class DisplayContacts extends ScrollPane {
 	
+	Button btExit = new Button("Return to Homepage");
 	GridPane gridPane = new GridPane();
 	Text[] textArray = {
 		new Text("First Name"),
@@ -25,7 +28,19 @@ public class DisplayContacts extends ScrollPane {
 			textArray[i].setFont(font);
 			gridPane.add(textArray[i], i, 0);
 		}
+		gridPane.add(btExit, 5, 1000);
 		setContent(gridPane);
 	}
 	
+	//Display all contacts from ArrayList contacts
+	public void display(ArrayList<Contact> contacts, GridPane gridPane) {
+		for (int i = 0, j = 1; i < contacts.size(); i++, j += 2) {
+			gridPane.add(new Text(contacts.get(i).getFirstName()), 0, j);
+			gridPane.add(new Text(contacts.get(i).getLastName()), 1, j);
+			gridPane.add(new Text(contacts.get(i).getPersonalPhoneNumber()), 2, j);
+			gridPane.add(new Text(contacts.get(i).getWorkPhoneNumber()), 3, j);
+			gridPane.add(new Text(contacts.get(i).getPersonalEmailAddress()), 4, j);
+			gridPane.add(new Text(contacts.get(i).getWorkEmailAddress()), 5, j);
+		}
+	}
 }
