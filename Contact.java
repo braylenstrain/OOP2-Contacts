@@ -1,6 +1,6 @@
 /*
  * Author: Braylen Strain
- * Date:
+ * Date: 03/08/2022
  * 
  * This class stores Contact information about people.
  */
