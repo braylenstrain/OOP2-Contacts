@@ -28,13 +28,13 @@ public class DisplayContacts extends ScrollPane {
 			textArray[i].setFont(font);
 			gridPane.add(textArray[i], i, 0);
 		}
-		gridPane.add(btExit, 5, 1000);
+		gridPane.add(btExit, 0, 100);
 		setContent(gridPane);
 	}
 	
 	//Display all contacts from ArrayList contacts
-	public void display(ArrayList<Contact> contacts, GridPane gridPane) {
-		for (int i = 0, j = 1; i < contacts.size(); i++, j += 2) {
+	public static void display(ArrayList<Contact> contacts, GridPane gridPane) {
+		for (int i = 0, j = 2; i < contacts.size(); i++, j += 2) {
 			gridPane.add(new Text(contacts.get(i).getFirstName()), 0, j);
 			gridPane.add(new Text(contacts.get(i).getLastName()), 1, j);
 			gridPane.add(new Text(contacts.get(i).getPersonalPhoneNumber()), 2, j);
