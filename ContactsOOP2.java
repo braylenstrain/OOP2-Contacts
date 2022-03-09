@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javafx.stage.Stage;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 
 public class ContactsOOP2 extends Application{
@@ -27,13 +28,16 @@ public class ContactsOOP2 extends Application{
 		Scene homepageScene = new Scene(homepage, 600, 350);
 		
 		DisplayContacts displayContacts = new DisplayContacts();
-		Scene displayScene = new Scene(displayContacts, 900, 600);
+		Scene displayScene = new Scene(displayContacts, 950, 600);
 		
 		AddContacts addContacts = new AddContacts();
 		Scene addScene = new Scene(addContacts, 350, 350);
 		
 		SearchContacts searchContacts = new SearchContacts();
-		Scene searchScene = new Scene(searchContacts, 900, 300);
+		Scene searchScene = new Scene(searchContacts, 950, 300);
+		
+		DeleteModifyContacts deleteModifyContacts = new DeleteModifyContacts();
+		Scene deleteModifyScene = new Scene(deleteModifyContacts, 950, 300);
 		
 		//Set the scene to homepage when program starts
 		primaryStage.setTitle("Homepage");
@@ -85,6 +89,39 @@ public class ContactsOOP2 extends Application{
 			searchContacts.btExit.setOnAction(f -> {
 				primaryStage.setTitle("Homepage");
 				primaryStage.setScene(homepageScene);
+			});
+		});
+		
+		//Go to DeleteModifyContacts scene when btDeleteModify is clicked
+		homepage.btDeleteModify.setOnAction(e -> {
+			primaryStage.setTitle("Delete/Modify Contacts");
+			primaryStage.setScene(deleteModifyScene);
+			
+			//Fill deleteModifyContacts.gridPane with contacts and delete, modify buttons
+			for (int i = 0; i < contacts.size(); i++) {
+				deleteModifyContacts.gridPane.add(new Text(contacts.get(i).getFirstName()), 0, i);
+				deleteModifyContacts.gridPane.add(new Text(contacts.get(i).getLastName()), 1, i);
+				deleteModifyContacts.gridPane.add(new Text(contacts.get(i).getPersonalPhoneNumber()), 2, i);
+				deleteModifyContacts.gridPane.add(new Text(contacts.get(i).getWorkPhoneNumber()), 3, i);
+				deleteModifyContacts.gridPane.add(new Text(contacts.get(i).getPersonalEmailAddress()), 4, i);
+				deleteModifyContacts.gridPane.add(new Text(contacts.get(i).getWorkEmailAddress()), 5, i);
+				deleteModifyContacts.gridPane.add(new Button("Modify"), 6, i);
+				deleteModifyContacts.gridPane.add(new Button("Delete"), 7, i);
+				
+				deleteModifyContacts.gridPane.getChildren().get(10)
+			}
+		
+			deleteModifyContacts.btExit.setOnAction(f -> {
+				primaryStage.setTitle("Homepage");
+				primaryStage.setScene(homepageScene);
+				
+				//Clear deleteModifyContacts.gridPane of all Contacts info and Buttons on exit
+				System.out.print(deleteModifyContacts.getChildren().size());
+				System.out.println(" " + contacts.size());
+
+				for (int i = 0; i < deleteModifyContacts.getChildren().size() - 2; i++) {
+					deleteModifyContacts.gridPane.getChildren().remove(7);
+				}
 			});
 		});
 	}
