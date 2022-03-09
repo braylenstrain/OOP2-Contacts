@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import javafx.stage.Stage;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyCode;
 import javafx.scene.text.Text;
 
 public class ContactsOOP2 extends Application{
@@ -28,62 +27,65 @@ public class ContactsOOP2 extends Application{
 		Scene homepageScene = new Scene(homepage, 600, 350);
 		
 		DisplayContacts displayContacts = new DisplayContacts();
-		Scene displayScene = new Scene(displayContacts, 850, 600);
+		Scene displayScene = new Scene(displayContacts, 900, 600);
 		
 		AddContacts addContacts = new AddContacts();
 		Scene addScene = new Scene(addContacts, 350, 350);
 		
 		SearchContacts searchContacts = new SearchContacts();
-		Scene searchScene = new Scene(searchContacts, 850, 300);
+		Scene searchScene = new Scene(searchContacts, 900, 300);
 		
 		//Set the scene to homepage when program starts
-		primaryStage.setTitle("Contacts: Homepage");
+		primaryStage.setTitle("Homepage");
 		primaryStage.setScene(homepageScene);
 		primaryStage.show();
 		primaryStage.setResizable(false);
 		
 		//Go to DisplayContacts scene when btDisplay is clicked
 		homepage.btDisplay.setOnAction(e -> {
-			primaryStage.setTitle("Contacts: Display Contacts");
+			primaryStage.setTitle("Display Contacts");
 			primaryStage.setScene(displayScene);
 			
 			//Display all contacts from ArrayList contacts and exit Button
-			displayContacts.display(contacts, displayContacts.gridPane);
+			DisplayContacts.display(contacts, displayContacts.gridPane);
 			
 			displayContacts.btExit.setOnAction(f -> {
-				primaryStage.setTitle("Contacts: Homepage");
+				primaryStage.setTitle("Homepage");
 				primaryStage.setScene(homepageScene);
+				
+				//Clear displayContact.gridPane of all Contacts info on exit
+				for (int i = 0; i < contacts.size() * 6; i++) {
+					displayContacts.gridPane.getChildren().remove(7);
+				}
 			});
 		});
 		
 		//Go to AddContacts scene when btAdd is clicked
 		homepage.btAdd.setOnAction(e -> {
-			primaryStage.setTitle("Contacts: Add Contacts");
+			primaryStage.setTitle("Add Contacts");
 			primaryStage.setScene(addScene);
 			
-			//When btAdd is clicked, take text from all text fields and add a Contact to contacts
-			addContacts.btAdd.setOnAction(f -> addContacts.addContact());
 			
-			//When the enter key is pressed, Take text from all text fields and add a Contact to contacts
-			addContacts.setOnKeyPressed(f -> {
-				if (f.getCode() == KeyCode.ENTER)
-						addContacts.addContact();
-			});
 			
 			//Clear counter and sort contacts on exit, then return to homepage
 			addContacts.btExit.setOnAction(f -> {
 				addContacts.counter = 0;
 				addContacts.setTop(new Text(""));
 				sortContacts();
-				primaryStage.setTitle("Contacts: Homepage");
+				primaryStage.setTitle("Homepage");
 				primaryStage.setScene(homepageScene);
 			});
 		});
 		
 		//Go to SearchContacts scene when btSearch is clicked
 		homepage.btSearch.setOnAction(e -> {
-			primaryStage.setTitle("Contacts: Search Contacts");
+			primaryStage.setTitle("Search Contacts");
 			primaryStage.setScene(searchScene);
+			
+			searchContacts.btExit.setOnAction(f -> {
+				primaryStage.setTitle("Homepage");
+				primaryStage.setScene(homepageScene);
+			});
 		});
 	}
 	
