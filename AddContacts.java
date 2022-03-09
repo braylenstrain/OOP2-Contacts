@@ -1,6 +1,7 @@
 
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -27,8 +28,8 @@ public class AddContacts extends BorderPane {
 		new Label("Work Email Address: ", tfWorkEmail)
 	};
 	VBox textFields = new VBox(20);
-	HBox buttons = new HBox(100);
-	Button btExit = new Button("Back to Homepage");
+	HBox buttons = new HBox(80);
+	Button btExit = new Button("Return to Homepage");
 	Button btAdd = new Button("Add Contact");
 	int counter;
 	
@@ -46,6 +47,15 @@ public class AddContacts extends BorderPane {
 		setCenter(textFields);
 		setBottom(buttons);
 		setPadding(new Insets(20));
+		
+		//When btAdd is clicked, take text from all text fields and add a Contact to contacts
+		btAdd.setOnAction(e -> addContact());
+		
+		//When the enter key is pressed, Take text from all text fields and add a Contact to contacts
+		setOnKeyPressed(e -> {
+			if (e.getCode() == KeyCode.ENTER)
+					addContact();
+		});
 	}
 	
 	//
