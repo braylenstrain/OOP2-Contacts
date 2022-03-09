@@ -1,5 +1,7 @@
-/*
- * Author: Braylen Strain
+package application;
+ 
+
+/* Author: Braylen Strain
  * Date: 03/03/2022
  * 
  * This program allows you to store the contact information of any number of people.
@@ -9,7 +11,6 @@ import java.util.ArrayList;
 import javafx.stage.Stage;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 
 public class ContactsOOP2 extends Application{
@@ -53,6 +54,7 @@ public class ContactsOOP2 extends Application{
 			//Display all contacts from ArrayList contacts and exit Button
 			DisplayContacts.display(contacts, displayContacts.gridPane);
 			
+			//Return to homepage when btExit is clicked
 			displayContacts.btExit.setOnAction(f -> {
 				primaryStage.setTitle("Homepage");
 				primaryStage.setScene(homepageScene);
@@ -86,6 +88,7 @@ public class ContactsOOP2 extends Application{
 			primaryStage.setTitle("Search Contacts");
 			primaryStage.setScene(searchScene);
 			
+			//Return to homepage when btExit is clicked
 			searchContacts.btExit.setOnAction(f -> {
 				primaryStage.setTitle("Homepage");
 				primaryStage.setScene(homepageScene);
@@ -98,29 +101,16 @@ public class ContactsOOP2 extends Application{
 			primaryStage.setScene(deleteModifyScene);
 			
 			//Fill deleteModifyContacts.gridPane with contacts and delete, modify buttons
-			for (int i = 0; i < contacts.size(); i++) {
-				deleteModifyContacts.gridPane.add(new Text(contacts.get(i).getFirstName()), 0, i);
-				deleteModifyContacts.gridPane.add(new Text(contacts.get(i).getLastName()), 1, i);
-				deleteModifyContacts.gridPane.add(new Text(contacts.get(i).getPersonalPhoneNumber()), 2, i);
-				deleteModifyContacts.gridPane.add(new Text(contacts.get(i).getWorkPhoneNumber()), 3, i);
-				deleteModifyContacts.gridPane.add(new Text(contacts.get(i).getPersonalEmailAddress()), 4, i);
-				deleteModifyContacts.gridPane.add(new Text(contacts.get(i).getWorkEmailAddress()), 5, i);
-				deleteModifyContacts.gridPane.add(new Button("Modify"), 6, i);
-				deleteModifyContacts.gridPane.add(new Button("Delete"), 7, i);
-				
-				deleteModifyContacts.gridPane.getChildren().get(10)
-			}
+			deleteModifyContacts.printList();
 		
+			//Return to homepage when btExit is clicked
 			deleteModifyContacts.btExit.setOnAction(f -> {
 				primaryStage.setTitle("Homepage");
 				primaryStage.setScene(homepageScene);
 				
 				//Clear deleteModifyContacts.gridPane of all Contacts info and Buttons on exit
-				System.out.print(deleteModifyContacts.getChildren().size());
-				System.out.println(" " + contacts.size());
-
-				for (int i = 0; i < deleteModifyContacts.getChildren().size() - 2; i++) {
-					deleteModifyContacts.gridPane.getChildren().remove(7);
+				for (int i = 0; i < contacts.size() * 8; i++) {
+					deleteModifyContacts.gridPane.getChildren().remove(1);
 				}
 			});
 		});
