@@ -114,6 +114,9 @@ public class ContactsOOP2 extends Application{
 				}
 			});
 		});
+		
+		//Exit the program when btExit is clicked
+		homepage.btExit.setOnAction(e -> System.exit(0));
 	}
 	
 	//Sort the contacts ArrayList by Contact first name
