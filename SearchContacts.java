@@ -23,7 +23,7 @@ public class SearchContacts extends ScrollPane{
 			new Text("Personal Email Address"),
 			new Text("Work Email Address")
 			};
-	public static int listLength = 0;
+	int listLength = 0;
 	
 	public SearchContacts() {
 		//Set tfSearchBar, btSearch, and btExit into gridPane. Set gridPane into SearchContacts.
