@@ -1,21 +1,26 @@
-package application;
  
-
 /* Author: Braylen Strain
- * Date: 03/03/2022
+ * Date: 03/09/2022
  * 
  * This program allows you to store the contact information of any number of people.
  */
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import javafx.stage.Stage;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.text.Text;
+import javafx.scene.control.Button;
 
 public class ContactsOOP2 extends Application{
 	
-	static ArrayList<Contact> contacts = new ArrayList<>();
+	public static ArrayList<Contact> contacts = new ArrayList<>();
 
 	public static void main(String[] args) {
 		launch(args);
@@ -115,8 +120,14 @@ public class ContactsOOP2 extends Application{
 			});
 		});
 		
+		//Load contacts from contacts.dat file
+		homepage.btFile.setOnAction(e -> loadContacts(homepage.btFile));
+		
 		//Exit the program when btExit is clicked
-		homepage.btExit.setOnAction(e -> System.exit(0));
+		homepage.btExit.setOnAction(e -> {
+			saveContacts();
+			System.exit(0);
+		});
 	}
 	
 	//Sort the contacts ArrayList by Contact first name
@@ -137,4 +148,31 @@ public class ContactsOOP2 extends Application{
 		}
 	}
 
+	//Save Contacts to file using Binary I/O
+	public static void saveContacts() {
+		try (
+				ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("contacts.dat"));
+				) {
+			output.writeObject(contacts);
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	//Load Contacts into contacts ArrayList
+	@SuppressWarnings("unchecked")
+	public static void loadContacts(Button btFile) {
+		try (
+				ObjectInputStream input = new ObjectInputStream(new FileInputStream("contacts.dat"))
+				) {
+			contacts = (ArrayList<Contact>)(input.readObject());
+			btFile.setText("Load Successful!");
+		} catch (FileNotFoundException ex) {
+			btFile.setText("File Not Found");
+		} catch (ClassNotFoundException ex){
+			ex.printStackTrace();
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+	}
 }
