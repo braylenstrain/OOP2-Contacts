@@ -12,7 +12,7 @@ public class Homepage extends BorderPane {
 	Button btAdd = new Button("Add Contacts");
 	Button btDeleteModify = new Button("Delete/Modify Contacts");
 	Button btSearch = new Button("Search Contacts");
-	Button btExit = new Button("Exit Program");
+	Button btExit = new Button("Save Contacts and Exit");
 	Button btFile = new Button("Load Contacts");
 	
 	public Homepage() {
