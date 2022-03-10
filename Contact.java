@@ -1,10 +1,14 @@
+
 /*
  * Author: Braylen Strain
- * Date: 03/08/2022
+ * Date: 03/09/2022
  * 
  * This class stores Contact information about people.
  */
-public class Contact implements Comparable<Contact>{
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class Contact implements Comparable<Contact> , Serializable{
 	private String firstName = "N/A";
 	private String lastName = "N/A";
 	private String personalPhoneNumber = "N/A";
