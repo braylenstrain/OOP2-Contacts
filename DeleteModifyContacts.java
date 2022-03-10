@@ -1,5 +1,3 @@
-package application;
-
 
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -158,17 +156,18 @@ public class DeleteModifyContacts extends BorderPane {
 			
 			//Get Contact based on index. If TextField has text, change Contact info to that text
 			Contact modContact = ContactsOOP2.contacts.get(index);
-			if (tfFirstName.getText() != "")
+			if (!tfFirstName.getText().equals(""))
 				modContact.setFirstName(tfFirstName.getText());
-			if (tfLastName.getText() != "")
+				ContactsOOP2.sortContacts(); //Sort contacts if first name is modified
+			if (!tfLastName.getText().equals(""))
 				modContact.setLastName(tfLastName.getText());
-			if (tfPersonalPhone.getText() != "")
+			if (!tfPersonalPhone.getText().equals(""))
 				modContact.setPersonalPhoneNumber(tfPersonalPhone.getText());
-			if (tfWorkPhone.getText() != "")
+			if (!tfWorkPhone.getText().equals(""))
 				modContact.setWorkPhoneNumber(tfWorkPhone.getText());
-			if (tfPersonalEmail.getText() != "")
+			if (!tfPersonalEmail.getText().equals(""))
 				modContact.setPersonalEmailAddress(tfPersonalEmail.getText());
-			if (tfWorkEmail.getText() != "")
+			if (!tfWorkEmail.getText().equals(""))
 				modContact.setWorkEmailAddress(tfWorkEmail.getText());
 			
 			//Clear old gridPane
